@@ -1,0 +1,13 @@
+# Save tables to individual csv files
+# client
+filepath = Path('/Users/juampi/Downloads/client.csv')  
+filepath.parent.mkdir(parents=True, exist_ok=True)  
+client.to_csv(filepath) 
+# campaign
+filepath = Path('/Users/juampi/Downloads/campaign.csv')  
+filepath.parent.mkdir(parents=True, exist_ok=True)  
+campaign.to_csv(filepath) 
+# economics
+filepath = Path('/Users/juampi/Downloads/economics.csv')  
+filepath.parent.mkdir(parents=True, exist_ok=True)  
+economics.to_csv(filepath) 
