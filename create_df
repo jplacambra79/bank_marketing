@@ -1,0 +1,4 @@
+# create df
+
+marketing = pd.read_csv('/Users/juampi/Downloads/bank_marketing.csv')
+marketing
