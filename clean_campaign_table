@@ -1,0 +1,2 @@
+client.loc[:,'job']=client.loc[:,'job'].str.replace('.','',regex=True)
+client.loc[:,'job'].value_counts()
