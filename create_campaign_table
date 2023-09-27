@@ -1,0 +1,4 @@
+# create campaign table
+campaign = marketing.loc[:,['client_id','campaign','duration','pdays','previous','poutcome','y']]
+campaign.columns=(['client_id','number_contacts','contact_duration','pdays','previous_campaign_contacts','previous_outcome','campaign_outcome'])
+campaign
