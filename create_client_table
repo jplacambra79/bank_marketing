@@ -1,0 +1,4 @@
+# create client table
+client = marketing.loc[:,['client_id','age','job','marital','education','credit_default','housing','loan']]
+client.columns=(['id','age','job','marital','education','credit_default','housing','loan'])
+client
