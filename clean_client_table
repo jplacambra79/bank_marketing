@@ -1,0 +1,7 @@
+# Clean "education" column in client table 
+# change "." to "_" 
+client.loc[:,'education'] = client.loc[:,'education'].str.replace('.','_',regex=True)
+client.education.value_counts()
+# change "unknown" to null values.
+client.loc[:,'education'] = client.loc[:,'education'].replace('unknown',np.NaN,regex=True)
+client.education.value_counts()
