@@ -1,2 +1,24 @@
-client.loc[:,'job']=client.loc[:,'job'].str.replace('.','',regex=True)
-client.loc[:,'job'].value_counts()
+campaign.previous_outcome.value_counts()
+# clean "campaign" table
+# convert "nonexistent" to Nan
+campaign.loc[:,'previous_outcome'] = campaign.loc[:,'previous_outcome'].replace('nonexistent',np.NaN,regex=True)
+# Convert "success" and "failure" in "previous_outcome" and "campaign_outcome" columns to binary (1 or 0)
+campaign.loc[:,'previous_outcome']=campaign.loc[:,'previous_outcome'].replace('success',1)
+campaign.loc[:,'previous_outcome']=campaign.loc[:,'previous_outcome'].replace('failure',0)
+campaign.loc[:,'campaign_outcome']=campaign.loc[:,'campaign_outcome'].replace('yes',1)
+campaign.loc[:,'campaign_outcome']=campaign.loc[:,'campaign_outcome'].replace('no',0)
+campaign
+# create column year = 2022 
+campaign.loc[:,'year'] = "2022"
+# month and day values are taken from the "month" and "day" columns.
+campaign.loc[:,'month'] = marketing.loc[:,'month'].astype(str)
+campaign.loc[:,'day'] = marketing.loc[:,'day'].astype(str)
+# Create a datetime column called last_contact_date, in the format of "year-month-day", 
+campaign.loc[:,'last_contact_date'] = campaign.loc[:,'year'] + '-' + campaign.loc[:,'month'] + '-' + campaign.loc[:,'day'] 
+campaign.loc[:,'last_contact_date']=campaign.loc[:,'last_contact_date'].astype('datetime64[us]')
+campaign.loc[:,'last_contact_date']=pd.to_datetime(campaign.loc[:,'last_contact_date'], format='%Y-%b-%d')
+# drop unnecessary columns
+campaign.drop(columns=['day','month','year'],inplace=True)
+# order columns
+campaign = campaign[['id','client_id','number_contacts','contact_duration','pdays','previous_campaign_contacts','previous_outcome','campaign_outcome','last_contact_date']]
+campaign
